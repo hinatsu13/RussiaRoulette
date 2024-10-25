@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block title %} Profile {% endblock %}
+
+{% block side_nav %}{% include 'side_nav.html' %}{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Profile</h1>
+<div class="row field">
+    <div class="col-md-6">
+        <h4 class="mb-4">First Name: {{ user.first_name }}</h4>
+    </div>
+    <div class="col-md-6">
+        <h4 class="mb-4">Last Name: {{ user.last_name }}</h4>
+    </div>
+</div>
+<div class="field">
+    <div>
+        <h4 class="mb-4">Email: {{ user.email }}</h4>
+    </div>
+</div>
+<div class="field">
+    <div>
+        <h4 class="mb-4">Phone Number: {{ user.phone_number }}</h4>
+    </div>
+</div>
+<div class="field">
+    <div>
+        <h4 class="mb-4">Point: {{ user.point }}</h4>
+    </div>
+</div>
+<div>
+    <div>
+        <h4 class="mb-4">Event history</h4>
+    </div>
+</div>
+{% for i in history %}
+<div class="card">
+    <div class="card-body">
+        {{i.name}}
+    </div>
+</div>
+{% empty %}
+<div class="card">
+    <div class="card-body">
+        You didn't join any event!
+    </div>
+</div>
+{% endfor %}
+<form action="{% url 'profile-update' %}" method="get" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Update Profile</button>
+</form>
+{% endblock %}
