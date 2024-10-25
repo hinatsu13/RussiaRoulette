@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from .models import *
 from .forms import *
 
@@ -10,10 +12,10 @@ class RewardView(View):
         return render(request, "reward.html")
     
 # Profile let go man (in process...)
-class Profile(View):
+class Profile(LoginRequiredMixin, View):
     def get(self, request):
-        user = Users.objects.get(user=request.user)
-        history = user.event.all()
+        user = request.user
+        history = user.users.event.all()
         return render(request, 'profile.html', {'history': history})
     
 class UpdateProfileView(View):
