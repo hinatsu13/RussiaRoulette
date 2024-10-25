@@ -36,6 +36,7 @@ class CreateUserForm(UserCreationForm):
         user = super().save(commit=False)
         if commit:
             user.save()
+            Users.objects.create(user=user)
             customer_group = Group.objects.get(name='Customer')
             user.groups.add(customer_group)
         return user
