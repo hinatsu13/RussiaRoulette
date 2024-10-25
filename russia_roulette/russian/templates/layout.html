@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% block style %}{% endblock %}
+</head>
+
+<body style="background-color: #2B2E4A;">
+    <!-- Navbar ที่แสดง username และ ปุ่ม logout-->
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #53354A;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}" style="color: rgb(245, 244, 243);">StrivePoints</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto ">
+                    <li class="nav-item">
+                        <p class="nav-link text-light"> I'm {{ user.username }}</p>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{% url 'logout' %}"><b>Logout</b></a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block side_nav %}{% include 'side_nav.html' %}{% endblock %}
+
+    <div class="content container py-4 position-relative" style="margin-left: 300px;">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
