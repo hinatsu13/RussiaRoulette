@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% for i in event %}
+<div class="card">
+    <div class="card-body">
+        {{i.name}}
+    </div>
+</div>
+{% empty %}
+<div class="card">
+    <div class="card-body">
+        You didn't join any event!
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
