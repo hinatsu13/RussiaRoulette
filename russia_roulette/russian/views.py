@@ -13,22 +13,28 @@ class RewardView(View):
     def get(self, request):
         return render(request, "reward.html")
     
-# Profile let go man (in process...)
+class EventListView(View):
+    def get(self, request):
+    
+# Profile let go man (success)
 class Profile(LoginRequiredMixin, View):
     def get(self, request):
         user = request.user
         history = user.users.event.all()
         return render(request, 'profile.html', {'history': history})
     
-class UpdateProfileView(View):
+class UpdateProfileView(LoginRequiredMixin, View):
     def get(self, request):
         form = ProfileForm(instance=request.user)
-        return render(request, 'profile_update.html', {'form': form})
+        return render(request, 'update-profile.html', {'form': form})
     
     def post(self, request):
         form = ProfileForm(request.POST, instance=request.user)
         if form.is_valid():
+            users = Users.objects.get(user=request.user)
+            users.phone_number = form.cleaned_data["phone_number"]
             form.save()
+            users.save()
             return redirect('profile') # Redirect back to profile page
         return render(request, 'update-profile.html')
 

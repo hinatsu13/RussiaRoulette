@@ -1,8 +1,16 @@
-{% extends 'laayout.html' %}
+{% extends 'layout.html' %}
 
 {% block title %} Profile {% endblock %}
 
 {% block side_nav %}{% include 'side_nav.html' %}{% endblock %}
+
+{% block style %}
+<style>
+    .col-md-6, .mb-4 {
+        color: #FFFFFF;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
 <h1 class="mb-4">Update Profile</h1>
