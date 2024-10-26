@@ -23,12 +23,14 @@ class EventListView(View):
     
 # Profile let go man (success)
 class Profile(LoginRequiredMixin, View):
+    login_url = '/russian/login/'
     def get(self, request):
         user = request.user
         history = user.users.event.all()
         return render(request, 'profile.html', {'history': history})
     
 class UpdateProfileView(LoginRequiredMixin, View):
+    login_url = '/russian/login/'
     def get(self, request):
         form = ProfileForm(instance=request.user)
         return render(request, 'update-profile.html', {'form': form})
