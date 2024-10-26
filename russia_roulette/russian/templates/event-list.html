@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block title %} Profile {% endblock %}
+
+{% block side_nav %}{% include 'side_nav.html' %}{% endblock %}
+
+{% block style %}
+<style>
+    .mb-4 {
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Events</h1>
+{% for i in event %}
+<div class="card">
+    <div class="card-body">
+        <h6>{{i.name}}</h6>
+        <p>{{i.description}}</p>
+        <p>{{i.point_reward}}</p>
+    </div>
+</div>
+{% empty %}
+<div class="card">
+    <div class="card-body">
+        Don't have events in this time!
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -18,7 +18,8 @@ class ChallengeView(View):
     
 class EventListView(View):
     def get(self, request):
-        return render()
+        event = Event.objects.all()
+        return render(request, 'event-list.html', {'event': event})
     
 # Profile let go man (success)
 class Profile(LoginRequiredMixin, View):
