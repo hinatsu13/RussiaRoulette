@@ -89,17 +89,11 @@ class ChangePassword(View):
             return redirect('profile')
         else:
             return render(request, 'change_password.html', {'form': form})
-        
-class ManageEventView(LoginRequiredMixin, View):
-    def get(self, request):
-        event = Event.objects.all()
-        return render(request, 'manage_event.html', {'event': event})
 
 class AddEventView(LoginRequiredMixin, View):
     def get(self, request):
-        eventform = EventForm()
-        rewardform = RewardForm()
-        return render(request, 'formevent.html', {'eventform': eventform, 'rewardform': rewardform})
+        form = EventForm()
+        return render(request, 'formevent.html', {'form': form})
     
     def post(self, request):
         form = EventForm(request.POST)
@@ -114,6 +108,19 @@ class AddEventView(LoginRequiredMixin, View):
                 print(i.id)
                 event.reward.add(i)
             event.save()
-            return redirect('manage-event')
+            return redirect('event')
         
-        return render(request, "manage_event.html", {"form": form})
+        return render(request, "formevent.html", {"form": form})
+    
+class AddRewardView(LoginRequiredMixin, View):
+    def get(self, request):
+        form = RewardForm()
+        return render(request, 'formreward.html', {'form': form})
+    
+    def post(self, request):
+        form = RewardForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('event')
+        
+        return render(request, "formreward.html", {"form": form})

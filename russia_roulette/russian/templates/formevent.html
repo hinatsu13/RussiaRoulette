@@ -1,54 +1,23 @@
 {% extends "layout.html" %}
 
+{% block style %}
+<style>
+    label {
+        color: white;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 
 <div class="container pl-5">
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="row align-items-start">
-            <div class="col">
-                <div class="field">
-                    {{ eventform.name.errors }}
-                    <label class="label" for="{{ eventform.name.id_for_label }}">name</label>
-                    <div class="control">
-                        {{ eventform.name }}
-                    </div>
-                </div>
-
-                <div class="field">
-                    {{ eventform.description.errors }}
-                    <label class="label" for="{{ eventform.description.id_for_label }}">description</label>
-                    <div class="control">
-                        {{ eventform.description }}
-                    </div>
-                </div>
-
-                <div class="field">
-                    {{ eventform.point_reward.errors }}
-                    <label class="label" for="{{ eventform.point_reward.id_for_label }}">point reward</label>
-                    <div class="control">
-                        {{ eventform.point_reward }}
-                    </div>
-                </div>
-
-                <div class="field">
-                    {{ eventform.reward.errors }}
-                    <label class="label" for="{{ eventform.reward.id_for_label }}">reward</label>
-                    <div class="control">
-                        {{ eventform.reward }}
-                    </div>
-                </div>
-
-            </div>
-
-
-
-
-
-            <br>
+                {{form}}
+        <br>
             <div class="button">
                 <input type="submit" class="btn btn-outline-success" value="Add">
-                <a class="btn btn-outline-danger" href="{% url 'manage-event' %}">Back</a>
+                <a class="btn btn-outline-danger" href="{% url 'event' %}">Back</a>
             </div>
 
     </form>
