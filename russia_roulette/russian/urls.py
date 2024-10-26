@@ -13,5 +13,6 @@ urlpatterns = [
     path("profile/", views.Profile.as_view(), name="profile"),
     path("profile/update/", views.UpdateProfileView.as_view(), name="profile-update"),
     path("events/add/", views.AddEventView.as_view(), name="add-event"),
+    path("events/<int:pk>/", views.EditEventView.as_view(), name="edit-event"),
     path("events/reward/", views.AddRewardView.as_view(), name="add-reward"),
 ]

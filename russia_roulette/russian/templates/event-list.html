@@ -22,13 +22,16 @@
 <br>
 
 {% for i in event %}
-<div class="card">
-    <div class="card-body">
-        <h4>{{i.name}}</h4>
-        <p>{{i.description}}</p>
-        <p>{{i.point_reward}}</p>
+<a href="{% url 'edit-event' i.id %}">
+    <div class="card">
+        <div class="card-body">
+            <h4>{{i.name}}</h4>
+            <p>{{i.description}}</p>
+            <p>{{i.point_reward}}</p>
+        </div>
     </div>
-</div>
+</a>
+<br>
 {% empty %}
 <div class="card">
     <div class="card-body">

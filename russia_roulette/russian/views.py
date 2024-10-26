@@ -124,3 +124,18 @@ class AddRewardView(LoginRequiredMixin, View):
             return redirect('event')
         
         return render(request, "formreward.html", {"form": form})
+    
+class EditEventView(LoginRequiredMixin, View):
+    def get(self, request, pk):
+        event = Event.objects.get(pk=pk)
+        form = EventForm(instance=event)
+        return render(request, 'formevent.html', {'form': form})
+    
+    def post(self, request, pk):
+        event = Event.objects.get(pk=pk)
+        form = EventForm(request.POST, request.FILES, instance=event)
+        if form.is_valid():
+            form.save()
+            return redirect('event')
+        
+        return render(request, "formevent.html", {"form": form})

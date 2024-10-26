@@ -13,10 +13,44 @@
 <div class="container pl-5">
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-                {{form}}
+                <div class="field">
+                    {{ form.name.errors }}
+                    <label class="label" for="{{ form.name.id_for_label }}">name:</label>
+                    <div class="control">
+                        {{ form.name }}
+                    </div>
+                </div>
+
+                <div class="field">
+                    {{ form.description.errors }}
+                    <label class="label" for="{{ form.description.id_for_label }}">description:</label>
+                    <div class="control">
+                        {{ form.description }}
+                    </div>
+                </div>
+
+                <div class="field">
+                    {{ form.point_reward.errors }}
+                    <label class="label" for="{{ form.point_reward.id_for_label }}">point reward:</label>
+                    <div class="control">
+                        {{ form.point_reward }}
+                    </div>
+                </div>
+
+                <div class="field">
+                    {{ form.reward.errors }}
+                    <label class="label" for="{{ form.reward.id_for_label }}">reward:</label>
+                    <div class="control">
+                        {{ form.reward }}
+                    </div>
+                </div>
         <br>
             <div class="button">
+                {% if 'add' in request.url.get_full_path %}
                 <input type="submit" class="btn btn-outline-success" value="Add">
+                {% else %}
+                <input type="submit" class="btn btn-outline-success" value="Save">
+                {% endif %}
                 <a class="btn btn-outline-danger" href="{% url 'event' %}">Back</a>
             </div>
 
