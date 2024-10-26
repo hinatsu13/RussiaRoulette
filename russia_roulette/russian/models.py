@@ -16,7 +16,7 @@ class Event(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     point_reward = models.IntegerField(default=0)
-    admin = models.OneToOneField(User, on_delete=models.CASCADE)
+    admin = models.ForeignKey(User, on_delete=models.CASCADE)
     reward = models.ManyToManyField("russian.Reward")
 
 class Reward(models.Model):
