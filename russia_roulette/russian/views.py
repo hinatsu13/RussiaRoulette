@@ -104,13 +104,12 @@ class AddEventView(LoginRequiredMixin, View):
     def post(self, request):
         form = EventForm(request.POST)
         if form.is_valid():
-            event = Event(
+            event = Event.objects.create(
                 name = form.cleaned_data['name'],
                 description = form.cleaned_data['description'],
                 point_reward = form.cleaned_data['point_reward'],
                 admin = request.user
             )
-            event.save()
             for i in form.cleaned_data['reward']:
                 print(i.id)
                 event.reward.add(i)
