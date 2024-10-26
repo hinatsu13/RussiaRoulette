@@ -65,7 +65,7 @@ class Login(View):
         if form.is_valid():
             user = form.get_user() 
             login(request,user)
-            return redirect('reward')#อย่าลืมเปลี่ยน
+            return redirect('event')#อย่าลืมเปลี่ยน
 
         return render(request,'login.html', {"form":form})
 
