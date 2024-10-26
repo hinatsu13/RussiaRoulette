@@ -39,3 +39,22 @@ class CreateUserForm(UserCreationForm):
             customer_group = Group.objects.get(name='Customer')
             user.groups.add(customer_group)
         return user
+
+class EventForm(ModelForm):
+    class Meta:
+        model = Event
+        fields = [
+            'name',
+            'description',
+            'point_reward',
+            'reward'
+        ]
+
+class RewardForm(ModelForm):
+    class Meta:
+        model = Reward
+        fields = [
+            'name',
+            'description'
+        ]
+        
