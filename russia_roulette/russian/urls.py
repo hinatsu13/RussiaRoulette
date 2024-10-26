@@ -12,4 +12,5 @@ urlpatterns = [
     path("Challenge/", views.ChallengeView.as_view(), name="challenge"),
     path("profile/", views.Profile.as_view(), name="profile"),
     path("profile/update/", views.UpdateProfileView.as_view(), name="profile-update"),
+    path("manage-event/", views.ManageEventView.as_view(), name="manage-event"),
 ]

@@ -88,7 +88,7 @@ class ChangePassword(View):
         else:
             return render(request, 'change_password.html', {'form': form})
         
-class ManageEvent(LoginRequiredMixin, View):
+class ManageEventView(LoginRequiredMixin, View):
     def get(self, request):
         event = Event.objects.all()
         return render(request, 'manage_event.html', {'event': event})
