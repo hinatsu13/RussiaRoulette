@@ -1,10 +1,118 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reward</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends "layout.html" %}
+
+{% block title %} Reward {% endblock %}
+
+{% block side_nav %}{% include 'side_nav.html' %}{% endblock %}
+
+{% block style %}
+    <style>
+        .container{
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .point{
+            position: absolute;
+            top: 50px;
+            left: 220px;
+            font-size: 20px;
+        }
+        .required{
+            position: absolute;
+            right: -500px;
+            font-size: 20px;
+        }
+        .content{
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .content .spinBtn{
+            position: absolute;
+            top: 280px;
+            left: 280px;
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            color: #000;
+            border-radius: 50%;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .content .spinBtn::before{
+            content: '';
+            position: absolute;
+            top: -28px;
+            width: 20px;
+            height: 30px;
+            background: #000000;
+            clip-path: polygon(50% 0%, 15% 100%, 85% 100%);
+        }
+        .content .wheel{
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+            border-radius: 50%;
+            overflow: hidden;
+
+        }
+        .content .wheel .number{
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            background-color: var(--clr);
+            transform-origin: bottom right;
+            transform: rotate(calc(45deg * var(--i)));
+            clip-path: polygon(0 0, 59% 0, 100% 100%, 0 59%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .content .wheel .number span{
+            position: relative;
+            transform: rotate(45deg);
+            font-size: 2em;
+        }
+        .back{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="back">
+            <a class="btn btn-outline-danger" href="{% url 'challenge' %}" role="button">Back</a>
+        </div>
+        <div class="point">
+            <p>Your points: {{ user.point }}</p>
+        </div>
+        <div class="content">
+            <div class="spinBtn"></div>
+            <div class="wheel">
+                <div class="number" style="--i:1;--clr:rgb(218, 68, 68);"><span>100</span></div>
+                <div class="number" style="--i:2;--clr:rgb(235, 235, 35);"><span>200</span></div>
+                <div class="number" style="--i:3;--clr:rgb(59, 232, 91);"><span>300</span></div>
+                <div class="number" style="--i:4;--clr:rgb(57, 169, 217);"><span>400</span></div>
+                <div class="number" style="--i:5;--clr:rgb(218, 56, 183);"><span>500</span></div>
+                <div class="number" style="--i:6;--clr:rgb(139, 254, 218);"><span>600</span></div>
+                <div class="number" style="--i:7;--clr:rgb(148, 151, 150);"><span>700</span></div>
+                <div class="number" style="--i:8;--clr:#da732e;"><span>800</span></div>
+            </div>
+        </div>
+        <div class="required">
+            <p>ใช้ 1000 points</p>
+            <button type="button" class="btn btn-primary">Spin</button>
+        </div>
+    </div>
+{% endblock %}

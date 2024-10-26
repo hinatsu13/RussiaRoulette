@@ -9,12 +9,16 @@ from .forms import *
 
 # Create your views here.
 class RewardView(View):
-
     def get(self, request):
         return render(request, "reward.html")
     
+class ChallengeView(View):
+    def get(self, request):
+        return render(request, "challenge.html")
+    
 class EventListView(View):
     def get(self, request):
+        return render()
     
 # Profile let go man (success)
 class Profile(LoginRequiredMixin, View):

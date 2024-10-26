@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %} Challenge {% endblock %}
+
+{% block side_nav %}{% include 'side_nav.html' %}{% endblock %}
+
+{% block style %}
+<style>
+    .container{
+        color: white;
+    }
+    .event-title{
+        font-size: 30px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="event-title"><p>Event {{ event.name }}</p></div>
+    <div class="card" style="width: 90%;">
+        <div class="card-body">
+          <p class="card-text">Descriptions: {{ event.description }}</p>
+          <p class="card-text">Point reward: {{ event.point_reward }}</p>
+          <a href="{% url 'reward' %}" class="btn btn-primary">Get Reward</a>
+        </div>
+      </div>
+</div>
+{% endblock %}
