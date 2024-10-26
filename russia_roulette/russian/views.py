@@ -139,3 +139,9 @@ class EditEventView(LoginRequiredMixin, View):
             return redirect('event')
         
         return render(request, "formevent.html", {"form": form})
+    
+class DeleteEvent(LoginRequiredMixin, View):
+    def get(self, request, pk):
+        event = Event.objects.get(pk=pk)
+        event.delete()
+        return redirect('event')

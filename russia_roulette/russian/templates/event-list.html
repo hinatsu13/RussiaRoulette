@@ -22,15 +22,20 @@
 <br>
 
 {% for i in event %}
-<a href="{% url 'edit-event' i.id %}">
+
     <div class="card">
         <div class="card-body">
             <h4>{{i.name}}</h4>
             <p>{{i.description}}</p>
             <p>{{i.point_reward}}</p>
+            <div>
+                <a class="btn btn-warning" href="{% url 'edit-event' i.id %}">Edit</a>
+                <a class="btn btn-danger" href="{% url 'delete-event' i.id %}">Delete</a>
+            </div>
+            
         </div>
     </div>
-</a>
+
 <br>
 {% empty %}
 <div class="card">

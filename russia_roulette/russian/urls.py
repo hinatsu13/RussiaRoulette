@@ -14,5 +14,6 @@ urlpatterns = [
     path("profile/update/", views.UpdateProfileView.as_view(), name="profile-update"),
     path("events/add/", views.AddEventView.as_view(), name="add-event"),
     path("events/<int:pk>/", views.EditEventView.as_view(), name="edit-event"),
+    path("delete/<int:pk>/", views.DeleteEvent.as_view(), name="delete-event"),
     path("events/reward/", views.AddRewardView.as_view(), name="add-reward"),
 ]
