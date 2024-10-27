@@ -9,12 +9,14 @@ from .forms import *
 
 # Create your views here.
 class RewardView(View):
-    def get(self, request):
-        return render(request, "reward.html")
+    def get(self, request, pk):
+        event = Event.objects.get(pk=pk)
+        return render(request, "reward.html", {'event': event})
     
 class ChallengeView(View):
-    def get(self, request):
-        return render(request, "challenge.html")
+    def get(self, request, pk):
+        event = Event.objects.get(pk=pk)
+        return render(request, "challenge.html", {'event': event})
     
 class EventListView(View):
     def get(self, request):

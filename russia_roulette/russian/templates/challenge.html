@@ -22,7 +22,7 @@
         <div class="card-body">
           <p class="card-text">Descriptions: {{ event.description }}</p>
           <p class="card-text">Point reward: {{ event.point_reward }}</p>
-          <a href="{% url 'reward' %}" class="btn btn-primary">Get Reward</a>
+          <a href="{% url 'reward' event.id %}" class="btn btn-primary">Get Reward</a>
         </div>
       </div>
 </div>
